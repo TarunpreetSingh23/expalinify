@@ -142,7 +142,7 @@ export default function HomePage() {
       </form>
 
       <footer className="border-t border-gray-800 text-xs text-gray-500 text-center py-2 bg-gray-950">
-        Built with Next.js • Tailwind • Gemini API
+        Built for Harsh
       </footer>
     </div>
   );
