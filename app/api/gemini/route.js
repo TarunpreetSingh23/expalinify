@@ -6,7 +6,7 @@ export async function POST(req) {
     const genAI = new GoogleGenerativeAI(process.env.URI);
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-    const prompt = `Explain the concept "${concept}" for a high school student using examples from ${region}.`;
+    const prompt = `Explain the concept "${concept}" for a high school student using example from ${region}.`;
 
     const result = await model.generateContent(prompt);
     const text = result.response.text();
