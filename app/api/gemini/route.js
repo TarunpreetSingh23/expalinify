@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
@@ -6,10 +7,12 @@ export async function POST(req) {
     const genAI = new GoogleGenerativeAI(process.env.URI);
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-    const prompt = `Explain the concept "${concept}" for a high school student and answer in 4-5 lines  using examples from ${region}.`;
+    // UPDATED PROMPT: Requesting a concise, accurate answer limited to 4-5 sentences.
+    const prompt = `Provide a concise and accurate explanation of the following topic for a high school student. Limit the answer to 4-5 sentences and use an example related to ${region}: "${concept}"`;
 
     const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    // Best practice to use .text property instead of .text() method
+    const text = result.response.text;
 
     return new Response(JSON.stringify({ response: text }), {
       headers: { "Content-Type": "application/json" },
